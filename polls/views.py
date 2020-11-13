@@ -5,6 +5,7 @@ from django.urls import reverse
 from django.views import generic
 from django.utils import timezone
 from .models import Question, Choice
+from .native.internalfunc import *
 
 
 
@@ -39,6 +40,8 @@ class ResultsView(generic.DetailView):
 
 # Create your views here.
 def vote(request, question_id):
+    testtext = request.POST['testtext']
+    asdf = testfunc(testtext)
     question = get_object_or_404(Question, pk=question_id)
     try:
         selected_choice = question.choice_set.get(pk=request.POST['choice'])
